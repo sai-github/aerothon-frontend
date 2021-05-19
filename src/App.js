@@ -8,6 +8,7 @@ import {
 import jwt_decode from 'jwt-decode';
 
 import { ChakraProvider } from '@chakra-ui/react';
+import { customTheme } from './theme';
 
 import Header from './components/header/Header';
 import UserAuth from './components/auth/UserAuth';
@@ -46,7 +47,7 @@ function App() {
 
     return (
         <div className="App">
-            <ChakraProvider>
+            <ChakraProvider theme={customTheme}>
                 <Router>
                     <Header />
                     <Switch>
