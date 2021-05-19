@@ -39,6 +39,10 @@ const validate = (values) => {
         errors.retypePassword = "Password doesn't match";
     }
 
+    if (!values.retypePassword) {
+        errors.retypePassword = 'Required';
+    }
+
     return errors;
 };
 
@@ -103,9 +107,11 @@ const Signup = () => {
                                 value={formik.values.userFirstName}
                                 placeholder="enter first name"
                             />
-                            {formik.errors.userFirstName ? (
-                                <div>{formik.errors.userFirstName}</div>
-                            ) : null}
+                            <span className="errors">
+                                {formik.errors.userFirstName ? (
+                                    <div>{formik.errors.userFirstName}</div>
+                                ) : null}
+                            </span>
                         </Box>
                         <Box>
                             <FormLabel htmlFor="firstName">Last Name</FormLabel>
@@ -117,9 +123,11 @@ const Signup = () => {
                                 value={formik.values.userSecondName}
                                 placeholder="enter last name"
                             />
-                            {formik.errors.userSecondName ? (
-                                <div>{formik.errors.userSecondName}</div>
-                            ) : null}
+                            <span className="errors">
+                                {formik.errors.userSecondName ? (
+                                    <div>{formik.errors.userSecondName}</div>
+                                ) : null}
+                            </span>
                         </Box>
                         <Box>
                             <FormLabel htmlFor="phoneNumber">
@@ -133,9 +141,11 @@ const Signup = () => {
                                 value={formik.values.phoneNumber}
                                 placeholder="phone number"
                             />
-                            {formik.errors.phoneNumber ? (
-                                <div>{formik.errors.phoneNumber}</div>
-                            ) : null}
+                            <span className="errors">
+                                {formik.errors.phoneNumber ? (
+                                    <div>{formik.errors.phoneNumber}</div>
+                                ) : null}
+                            </span>
                         </Box>
                         <Box>
                             <FormLabel htmlFor="email">Email</FormLabel>
@@ -147,9 +157,11 @@ const Signup = () => {
                                 value={formik.values.email}
                                 placeholder="enter email"
                             />
-                            {formik.errors.email ? (
-                                <div>{formik.errors.email}</div>
-                            ) : null}
+                            <span className="errors">
+                                {formik.errors.email ? (
+                                    <div>{formik.errors.email}</div>
+                                ) : null}
+                            </span>
                         </Box>
                         <Box>
                             <FormLabel htmlFor="password">Password</FormLabel>
@@ -161,9 +173,11 @@ const Signup = () => {
                                 value={formik.values.password}
                                 placeholder="enter password"
                             />
-                            {formik.errors.password ? (
-                                <div>{formik.errors.password}</div>
-                            ) : null}
+                            <span className="errors">
+                                {formik.errors.password ? (
+                                    <div>{formik.errors.password}</div>
+                                ) : null}
+                            </span>
                         </Box>
                         <Box>
                             <FormLabel htmlFor="rePassword">
@@ -177,9 +191,11 @@ const Signup = () => {
                                 value={formik.values.retypePassword}
                                 placeholder="retype password"
                             />
-                            {formik.errors.retypePassword ? (
-                                <div>{formik.errors.retypePassword}</div>
-                            ) : null}
+                            <span className="errors">
+                                {formik.errors.retypePassword ? (
+                                    <div>{formik.errors.retypePassword}</div>
+                                ) : null}
+                            </span>
                         </Box>
 
                         <Link to="/login">Go Login</Link>
