@@ -6,6 +6,7 @@ import { Box, Heading, VStack } from '@chakra-ui/layout';
 import { FormLabel } from '@chakra-ui/form-control';
 import { Input } from '@chakra-ui/input';
 import { Button } from '@chakra-ui/button';
+import { useToast } from '@chakra-ui/toast';
 
 const validate = (values) => {
     const errors = {};
@@ -43,6 +44,8 @@ const validate = (values) => {
 
 const Signup = () => {
     let history = useHistory();
+    const toast = useToast();
+
     const formik = useFormik({
         initialValues: {
             userFirstName: '',
@@ -59,9 +62,24 @@ const Signup = () => {
             axios
                 .post('/api/register', filteredValues)
                 .then((res) => {
+                    toast({
+                        title: 'Success',
+                        description: res.data.message,
+                        status: 'success',
+                        duration: 5000,
+                        isClosable: true,
+                    });
                     history.push('/login');
                 })
-                .catch((e) => console.error(e));
+                .catch((error) => {
+                    toast({
+                        title: 'Error',
+                        description: error.response.data.message,
+                        status: 'error',
+                        duration: 5000,
+                        isClosable: true,
+                    });
+                });
         },
     });
 
