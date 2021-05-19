@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-import { Link, useHistory } from 'react-router-dom';
+import { Link as ReactLink, useHistory } from 'react-router-dom';
 
 import { useFormik } from 'formik';
-import { Box, Heading, VStack } from '@chakra-ui/layout';
+import { Box, Heading, Link, VStack } from '@chakra-ui/layout';
 import { FormLabel } from '@chakra-ui/form-control';
 import { Input } from '@chakra-ui/input';
 import { Button } from '@chakra-ui/button';
@@ -76,9 +76,15 @@ const Login = () => {
     return (
         <div>
             <form onSubmit={formik.handleSubmit}>
-                <Box boxShadow="md" p="6" rounded="md" bg="white">
-                    <Heading size="md" my="4">
-                        Login
+                <Box
+                    boxShadow="md"
+                    p="6"
+                    rounded="lg"
+                    bg="white"
+                    maxWidth="400px"
+                >
+                    <Heading size="md" mt="4" mb="8" textAlign="center">
+                        Welcome back !
                     </Heading>
                     <VStack spacing={4} align="stretch">
                         <Box>
@@ -114,7 +120,12 @@ const Login = () => {
                             </span>
                         </Box>
 
-                        <Link to="/signup">Go to Sign up</Link>
+                        <span>
+                            Don't have an account?{' '}
+                            <Link as={ReactLink} color="teal.500" to="/signup">
+                                Signup
+                            </Link>
+                        </span>
 
                         <Button size="md" type="submit">
                             Login

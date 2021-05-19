@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import { Link, useHistory } from 'react-router-dom';
+import { Link as ReactLink, useHistory } from 'react-router-dom';
 import { useFormik } from 'formik';
-import { Box, Heading, VStack } from '@chakra-ui/layout';
+import { Box, Flex, Heading, Link, VStack } from '@chakra-ui/layout';
 import { FormLabel } from '@chakra-ui/form-control';
 import { Input } from '@chakra-ui/input';
 import { Button } from '@chakra-ui/button';
@@ -90,45 +90,57 @@ const Signup = () => {
     return (
         <div>
             <form onSubmit={formik.handleSubmit}>
-                <Box boxShadow="md" p="6" rounded="md" bg="white">
-                    <Heading size="md" my="4">
-                        Sign up
+                <Box
+                    boxShadow="md"
+                    p="6"
+                    rounded="lg"
+                    bg="white"
+                    maxWidth="400px"
+                >
+                    <Heading size="md" mt="4" mb="8" textAlign="center">
+                        Create account
                     </Heading>
                     <VStack spacing={4} align="stretch">
-                        <Box>
-                            <FormLabel htmlFor="firstName">
-                                First Name
-                            </FormLabel>
-                            <Input
-                                id="firstName"
-                                name="userFirstName"
-                                type="text"
-                                onChange={formik.handleChange}
-                                value={formik.values.userFirstName}
-                                placeholder="enter first name"
-                            />
-                            <span className="errors">
-                                {formik.errors.userFirstName ? (
-                                    <div>{formik.errors.userFirstName}</div>
-                                ) : null}
-                            </span>
-                        </Box>
-                        <Box>
-                            <FormLabel htmlFor="firstName">Last Name</FormLabel>
-                            <Input
-                                id="lastname"
-                                name="userSecondName"
-                                type="text"
-                                onChange={formik.handleChange}
-                                value={formik.values.userSecondName}
-                                placeholder="enter last name"
-                            />
-                            <span className="errors">
-                                {formik.errors.userSecondName ? (
-                                    <div>{formik.errors.userSecondName}</div>
-                                ) : null}
-                            </span>
-                        </Box>
+                        <Flex justifyContent="space-between">
+                            <Box w="48%">
+                                <FormLabel htmlFor="firstName">
+                                    First Name
+                                </FormLabel>
+                                <Input
+                                    id="firstName"
+                                    name="userFirstName"
+                                    type="text"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.userFirstName}
+                                    placeholder="First Name"
+                                />
+                                <span className="errors">
+                                    {formik.errors.userFirstName ? (
+                                        <div>{formik.errors.userFirstName}</div>
+                                    ) : null}
+                                </span>
+                            </Box>
+                            <Box w="48%">
+                                <FormLabel htmlFor="firstName">
+                                    Last Name
+                                </FormLabel>
+                                <Input
+                                    id="lastname"
+                                    name="userSecondName"
+                                    type="text"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.userSecondName}
+                                    placeholder="Last Name"
+                                />
+                                <span className="errors">
+                                    {formik.errors.userSecondName ? (
+                                        <div>
+                                            {formik.errors.userSecondName}
+                                        </div>
+                                    ) : null}
+                                </span>
+                            </Box>
+                        </Flex>
                         <Box>
                             <FormLabel htmlFor="phoneNumber">
                                 Phone No
@@ -197,9 +209,13 @@ const Signup = () => {
                                 ) : null}
                             </span>
                         </Box>
-
-                        <Link to="/login">Go Login</Link>
-
+                        {/* <Link to="/login">Go Login</Link> */}
+                        <span>
+                            Already have an account?{' '}
+                            <Link as={ReactLink} color="teal.500" to="/login">
+                                Login
+                            </Link>
+                        </span>
                         <Button colorScheme="teal" size="md" type="submit">
                             Sign up
                         </Button>

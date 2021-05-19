@@ -27,7 +27,12 @@ const Header = () => {
     const btnRef = React.useRef();
 
     return (
-        <Box boxShadow="md" p={{ base: '4', md: '2' }} bg="white">
+        <Box
+            boxShadow="md"
+            p={{ base: '4', md: '2' }}
+            bg="white"
+            position="relative"
+        >
             <Flex>
                 <Flex alignItems="center">
                     <img className="app-logo" src={airbusLogo} alt="logo" />
