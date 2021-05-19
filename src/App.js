@@ -7,8 +7,9 @@ import {
 } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 
-import './App.css';
+import { ChakraProvider } from '@chakra-ui/react';
 
+import Header from './components/header/Header';
 import UserAuth from './components/auth/UserAuth';
 import Dashboard from './components/dashboard/Dashboard';
 import PrivateDashboard from './components/dashboard/PrivateDashboard';
@@ -45,33 +46,35 @@ function App() {
 
     return (
         <div className="App">
-            <Router>
-                <header className="App-header">Aerothon 3.0</header>
-                <Switch>
-                    <Route exact path="/">
-                        <Dashboard />
-                    </Route>
-                    <Route path="/login">
-                        <UserAuth />
-                    </Route>
-                    <Route path="/signup">
-                        <UserAuth />
-                    </Route>
-                    <Route
-                        path="/mydash"
-                        render={() =>
-                            isLoggedIn() ? (
-                                <PrivateDashboard />
-                            ) : (
-                                <Redirect to="/login" />
-                            )
-                        }
-                    />
-                    <Route path="*">
-                        <NotFound />
-                    </Route>
-                </Switch>
-            </Router>
+            <ChakraProvider>
+                <Router>
+                    <Header />
+                    <Switch>
+                        <Route exact path="/">
+                            <Dashboard />
+                        </Route>
+                        <Route path="/login">
+                            <UserAuth />
+                        </Route>
+                        <Route path="/signup">
+                            <UserAuth />
+                        </Route>
+                        <Route
+                            path="/mydash"
+                            render={() =>
+                                isLoggedIn() ? (
+                                    <PrivateDashboard />
+                                ) : (
+                                    <Redirect to="/login" />
+                                )
+                            }
+                        />
+                        <Route path="*">
+                            <NotFound />
+                        </Route>
+                    </Switch>
+                </Router>
+            </ChakraProvider>
         </div>
     );
 }
