@@ -20,13 +20,14 @@ import { CgMenuRight } from 'react-icons/cg';
 
 import airbusLogo from '../../assets/logo/airbus-logo-dark.svg';
 import chmodLogo from '../../assets/logo/chmod777-dark.svg';
+import LoginAction from '../auth/LoginAction';
 
 const Header = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const btnRef = React.useRef();
 
     return (
-        <Box boxShadow="md" p="2" bg="white">
+        <Box boxShadow="md" p={{ base: '4', md: '2' }} bg="white">
             <Flex>
                 <Flex alignItems="center">
                     <img className="app-logo" src={airbusLogo} alt="logo" />
@@ -41,6 +42,7 @@ const Header = () => {
                 </Flex>
                 <Spacer />
                 <Flex>
+                    <LoginAction />
                     <IconButton
                         ref={btnRef}
                         onClick={onOpen}
