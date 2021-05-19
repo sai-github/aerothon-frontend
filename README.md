@@ -1,13 +1,13 @@
-# aerothon-frontend
+# chmod777-frontend
 
-[![Node.js CI](https://github.com/sai-github/aerothon-frontend/actions/workflows/node.js.yml/badge.svg)](https://github.com/sai-github/aerothon-frontend/actions/workflows/node.js.yml) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+[![Node.js CI](https://github.com/sai-github/chmod777-frontend/actions/workflows/node.js.yml/badge.svg)](https://github.com/sai-github/chmod777-frontend/actions/workflows/node.js.yml) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Setting up and getting started with project
 
--   `git clone https://github.com/sai-github/aerothon-frontend.git`
--   `cd aerothon-frontend`
+-   `git clone https://github.com/sai-github/chmod777-frontend.git`
+-   `cd chmod777-frontend`
 -   `yarn install`
 -   `yarn start`
 
