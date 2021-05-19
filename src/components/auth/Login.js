@@ -91,7 +91,7 @@ const Login = () => {
 
                         <Link to="/signup">Go to Sign up</Link>
 
-                        <Button colorScheme="teal" size="md" type="submit">
+                        <Button size="md" type="submit">
                             Login
                         </Button>
                     </VStack>
