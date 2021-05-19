@@ -20,11 +20,11 @@ axios.interceptors.response.use(
     (error) => {
         if (401 === error.response.status) {
             localStorage.removeItem('sessionToken');
+            localStorage.setItem('loggedIn', false);
             alert(
                 'Your session has expired. You will be redirected to the login page.'
             );
             window.location = '/login';
-            localStorage.setItem('loggedIn', false);
         } else {
             return Promise.reject(error);
         }
