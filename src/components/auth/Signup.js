@@ -59,8 +59,7 @@ const Signup = () => {
             axios
                 .post('/api/register', filteredValues)
                 .then((res) => {
-                    console.log(res);
-                    history.push('/');
+                    history.push('/login');
                 })
                 .catch((e) => console.error(e));
         },
