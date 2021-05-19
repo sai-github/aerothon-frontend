@@ -9,9 +9,9 @@ const Dashboard = () => {
     const history = useHistory();
     const isLoggedIn = localStorage.getItem('loggedIn') === 'true';
 
-    const getUsers = (values) => {
+    const getUsers = () => {
         axios
-            .get('api/user/listuser', values)
+            .get('api/user/listuser')
             .then((res) => {
                 console.log(res);
             })
