@@ -3,6 +3,10 @@ import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
 
 import { useFormik } from 'formik';
+import { Box, Heading, VStack } from '@chakra-ui/layout';
+import { FormLabel } from '@chakra-ui/form-control';
+import { Input } from '@chakra-ui/input';
+import { Button } from '@chakra-ui/button';
 
 const validate = (values) => {
     const errors = {};
@@ -50,39 +54,48 @@ const Login = () => {
 
     return (
         <div>
-            <div>Login</div>
             <form onSubmit={formik.handleSubmit}>
-                <div>
-                    <label htmlFor="email">Email</label>
-                    <input
-                        id="email"
-                        name="email"
-                        type="text"
-                        onChange={formik.handleChange}
-                        value={formik.values.email}
-                    />
-                    {formik.errors.email ? (
-                        <div>{formik.errors.email}</div>
-                    ) : null}
-                </div>
+                <Box boxShadow="md" p="6" rounded="md" bg="white">
+                    <Heading size="md" my="4">
+                        Login
+                    </Heading>
+                    <VStack spacing={4} align="stretch">
+                        <Box>
+                            <FormLabel htmlFor="email">Email</FormLabel>
+                            <Input
+                                id="email"
+                                name="email"
+                                type="text"
+                                onChange={formik.handleChange}
+                                value={formik.values.email}
+                                placeholder="enter email"
+                            />
+                            {formik.errors.email ? (
+                                <div>{formik.errors.email}</div>
+                            ) : null}
+                        </Box>
+                        <Box>
+                            <FormLabel htmlFor="password">Password</FormLabel>
+                            <Input
+                                id="password"
+                                name="password"
+                                type="password"
+                                onChange={formik.handleChange}
+                                value={formik.values.password}
+                                placeholder="enter password"
+                            />
+                            {formik.errors.password ? (
+                                <div>{formik.errors.password}</div>
+                            ) : null}
+                        </Box>
 
-                <div>
-                    <label htmlFor="password">Password</label>
-                    <input
-                        id="password"
-                        name="password"
-                        type="password"
-                        onChange={formik.handleChange}
-                        value={formik.values.password}
-                    />
-                    {formik.errors.password ? (
-                        <div>{formik.errors.password}</div>
-                    ) : null}
-                </div>
+                        <Link to="/signup">Go to Sign up</Link>
 
-                <Link to="/signup">Go to Sign up</Link>
-
-                <button type="submit">Submit</button>
+                        <Button colorScheme="teal" size="md" type="submit">
+                            Login
+                        </Button>
+                    </VStack>
+                </Box>
             </form>
         </div>
     );

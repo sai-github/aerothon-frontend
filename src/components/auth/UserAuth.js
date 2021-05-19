@@ -5,12 +5,7 @@ import Signup from './Signup';
 
 const UserAuth = () => {
     const location = useLocation();
-    return (
-        <div>
-            <div>User auth</div>
-            {location.pathname === '/login' ? <Login /> : <Signup />}
-        </div>
-    );
+    return <div>{location.pathname === '/login' ? <Login /> : <Signup />}</div>;
 };
 
 export default UserAuth;
