@@ -9,6 +9,8 @@ import { Input } from '@chakra-ui/input';
 import { Button } from '@chakra-ui/button';
 import { useToast } from '@chakra-ui/react';
 
+import './Login.css';
+
 const validate = (values) => {
     const errors = {};
 
@@ -89,9 +91,11 @@ const Login = () => {
                                 value={formik.values.email}
                                 placeholder="enter email"
                             />
-                            {formik.errors.email ? (
-                                <div>{formik.errors.email}</div>
-                            ) : null}
+                            <span className="errors">
+                                {formik.errors.email ? (
+                                    <div>{formik.errors.email}</div>
+                                ) : null}
+                            </span>
                         </Box>
                         <Box>
                             <FormLabel htmlFor="password">Password</FormLabel>
@@ -103,9 +107,11 @@ const Login = () => {
                                 value={formik.values.password}
                                 placeholder="enter password"
                             />
-                            {formik.errors.password ? (
-                                <div>{formik.errors.password}</div>
-                            ) : null}
+                            <span className="errors">
+                                {formik.errors.password ? (
+                                    <div>{formik.errors.password}</div>
+                                ) : null}
+                            </span>
                         </Box>
 
                         <Link to="/signup">Go to Sign up</Link>
