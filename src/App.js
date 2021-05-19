@@ -12,7 +12,7 @@ import { customTheme } from './theme';
 
 import Header from './components/header/Header';
 import UserAuth from './components/auth/UserAuth';
-import Dashboard from './components/dashboard/Dashboard';
+import Splash from './components/splash/Splash';
 import PrivateDashboard from './components/dashboard/PrivateDashboard';
 import NotFound from './components/not-found/NotFound';
 
@@ -55,7 +55,7 @@ function App() {
                     <Header />
                     <Switch>
                         <Route exact path="/">
-                            <Dashboard />
+                            <Splash />
                         </Route>
                         <Route path="/login">
                             <UserAuth />
