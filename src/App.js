@@ -40,6 +40,9 @@ function App() {
         if (!isValidToken) {
             localStorage.removeItem('sessionToken');
             localStorage.removeItem('loggedIn');
+            alert(
+                'Your session has expired. You will be redirected to the login page.'
+            );
         }
 
         return isValidToken;
