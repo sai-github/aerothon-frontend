@@ -57,7 +57,7 @@ const Login = () => {
                             duration: 5000,
                             isClosable: true,
                         });
-                        history.push('/');
+                        history.push('/dashboard');
                     }
                 })
                 .catch((error) => {
