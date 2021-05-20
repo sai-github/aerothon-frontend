@@ -15,6 +15,8 @@ import UserAuth from './components/auth/UserAuth';
 import Splash from './components/splash/Splash';
 import PrivateDashboard from './components/dashboard/PrivateDashboard';
 import NotFound from './components/not-found/NotFound';
+import ManageFaq from './components/manage-faq/ManageFaq';
+import BugSummary from './components/bug-summary/BugSummary';
 
 function App() {
     const isLoggedIn = () => {
@@ -64,10 +66,30 @@ function App() {
                             <UserAuth />
                         </Route>
                         <Route
-                            path="/mydash"
+                            path="/dashboard"
                             render={() =>
                                 isLoggedIn() ? (
                                     <PrivateDashboard />
+                                ) : (
+                                    <Redirect to="/login" />
+                                )
+                            }
+                        />
+                        <Route
+                            path="/manageFaq"
+                            render={() =>
+                                isLoggedIn() ? (
+                                    <ManageFaq />
+                                ) : (
+                                    <Redirect to="/login" />
+                                )
+                            }
+                        />
+                        <Route
+                            path="/bugSummary"
+                            render={() =>
+                                isLoggedIn() ? (
+                                    <BugSummary />
                                 ) : (
                                     <Redirect to="/login" />
                                 )
