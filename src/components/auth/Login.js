@@ -29,7 +29,7 @@ const validate = (values) => {
     return errors;
 };
 
-const Login = () => {
+const Login = (props) => {
     const history = useHistory();
     const toast = useToast();
 
@@ -40,16 +40,20 @@ const Login = () => {
         },
         validate,
         onSubmit: (values) => {
-            console.log('sending login values', values);
             axios
                 .post('/api/login', values)
                 .then((res) => {
-                    console.log(res);
                     if (res.data.status === 'success') {
                         localStorage.setItem('sessionToken', res.data.token);
                         axios.defaults.headers.common['Authorization'] =
                             res.data.token;
                         localStorage.setItem('loggedIn', true);
+                        const user = {
+                            name: res.data.data.userFirstName,
+                            email: res.data.data.email,
+                        };
+                        localStorage.setItem('user', JSON.stringify(user));
+                        props.onChange(user);
                         toast({
                             title: 'Success',
                             description: res.data.message,
@@ -61,7 +65,6 @@ const Login = () => {
                     }
                 })
                 .catch((error) => {
-                    console.log(error.response);
                     toast({
                         title: 'Error',
                         description: error.response.data.message,
