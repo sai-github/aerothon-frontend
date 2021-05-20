@@ -6,6 +6,17 @@ import {
 
 export const customTheme = extendTheme(
     {
+        components: {
+            Badge: {
+                sizes: {
+                    sm: {
+                        h: '12px',
+                        fontSize: '8px',
+                        px: '4px',
+                    },
+                },
+            },
+        },
         colors: {
             brand: baseTheme.colors.teal,
         },
