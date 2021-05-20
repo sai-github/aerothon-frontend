@@ -28,7 +28,7 @@ import LoginAction from '../auth/LoginAction';
 import { EmailIcon } from '@chakra-ui/icons';
 import { useHistory } from 'react-router';
 
-const Header = () => {
+const Header = (props) => {
     const history = useHistory();
     const { isOpen, onOpen, onClose } = useDisclosure();
     const btnRef = React.useRef();
@@ -44,9 +44,14 @@ const Header = () => {
             routePath: '/bugSummary',
         },
     ];
+
     const onNavigate = (value) => {
         onClose();
         history.push(value);
+    };
+
+    const onUserChange = (changes) => {
+        props.onUserUpdate(changes);
     };
 
     return (
@@ -70,7 +75,10 @@ const Header = () => {
                 </Flex>
                 <Spacer />
                 <Flex>
-                    <LoginAction />
+                    <LoginAction
+                        user={props.user}
+                        onUserChange={onUserChange}
+                    />
                     <IconButton
                         ref={btnRef}
                         onClick={onOpen}

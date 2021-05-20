@@ -4,8 +4,12 @@ import { useLocation } from 'react-router-dom';
 import Login from './Login';
 import Signup from './Signup';
 
-const UserAuth = () => {
+const UserAuth = (props) => {
     const location = useLocation();
+
+    const onChange = (changes) => {
+        props.onUserUpdate(changes);
+    };
     return (
         <Flex
             p={{ base: '40px', md: '80px 100px' }}
@@ -13,7 +17,11 @@ const UserAuth = () => {
             bgGradient="linear-gradient(-45deg, #FFC796 0%, #FF6B95 100%)"
             justifyContent="center"
         >
-            {location.pathname === '/login' ? <Login /> : <Signup />}
+            {location.pathname === '/login' ? (
+                <Login onChange={onChange} />
+            ) : (
+                <Signup />
+            )}
         </Flex>
     );
 };

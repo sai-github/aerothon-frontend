@@ -20,7 +20,8 @@ axios.interceptors.response.use(
     (error) => {
         if (401 === error.response.status) {
             localStorage.removeItem('sessionToken');
-            localStorage.setItem('loggedIn', false);
+            localStorage.removeItem('loggedIn');
+            localStorage.removeItem('user');
             alert(
                 'Your session has expired. You will be redirected to the login page.'
             );

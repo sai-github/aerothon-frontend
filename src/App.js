@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     BrowserRouter as Router,
     Switch,
@@ -19,6 +19,8 @@ import ManageFaq from './components/manage-faq/ManageFaq';
 import BugSummary from './components/bug-summary/BugSummary';
 
 function App() {
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+
     const isLoggedIn = () => {
         let isValidToken = false;
         const token = localStorage.getItem('sessionToken');
@@ -42,6 +44,7 @@ function App() {
         if (!isValidToken) {
             localStorage.removeItem('sessionToken');
             localStorage.removeItem('loggedIn');
+            localStorage.removeItem('user');
             alert(
                 'Your session has expired. You will be redirected to the login page.'
             );
@@ -50,20 +53,24 @@ function App() {
         return isValidToken;
     };
 
+    const handleUserUpdate = (values) => {
+        setUser(values);
+    };
+
     return (
         <div className="App">
             <ChakraProvider theme={customTheme}>
                 <Router>
-                    <Header />
+                    <Header user={user} onUserUpdate={handleUserUpdate} />
                     <Switch>
                         <Route exact path="/">
                             <Splash />
                         </Route>
                         <Route path="/login">
-                            <UserAuth />
+                            <UserAuth onUserUpdate={handleUserUpdate} />
                         </Route>
                         <Route path="/signup">
-                            <UserAuth />
+                            <UserAuth onUserUpdate={handleUserUpdate} />
                         </Route>
                         <Route
                             path="/dashboard"
