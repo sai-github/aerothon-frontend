@@ -1,4 +1,4 @@
-import { Box, Flex } from '@chakra-ui/layout';
+import { Flex } from '@chakra-ui/layout';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import Login from './Login';
