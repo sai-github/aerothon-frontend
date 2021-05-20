@@ -95,41 +95,68 @@ const Header = (props) => {
                 <DrawerOverlay />
                 <DrawerContent>
                     <DrawerCloseButton />
-                    <DrawerHeader>
-                        <Flex pt="8" direction="column" alignItems="center">
-                            <Avatar size="lg" name="Oshigaki Kisame" />
-                            <Text fontSize="2xl" mt="4">
-                                Firstname
-                            </Text>
-                        </Flex>
-                    </DrawerHeader>
-
-                    <DrawerBody>
-                        <Stack direction="column" spacing={4}>
-                            {sideNavItems.map((item) => (
+                    {!props.user && (
+                        <DrawerHeader>
+                            <Stack direction="column" spacing={4} mt="16">
                                 <Button
-                                    key={item.name}
-                                    leftIcon={<Icon as={item.icon} />}
                                     variant="ghost"
-                                    onClick={() => onNavigate(item.routePath)}
+                                    onClick={() => onNavigate('/')}
                                 >
-                                    {item.name}
+                                    Home
                                 </Button>
-                            ))}
-                        </Stack>
-                    </DrawerBody>
+                                <Button
+                                    variant="ghost"
+                                    onClick={() => onNavigate('/login')}
+                                >
+                                    Login
+                                </Button>
+                            </Stack>
+                        </DrawerHeader>
+                    )}
 
-                    <DrawerFooter justifyContent="center">
-                        <Stack direction="column" spacing={4}>
-                            <Button
-                                leftIcon={<EmailIcon />}
-                                colorScheme="teal"
-                                variant="solid"
-                            >
-                                Email
-                            </Button>
-                        </Stack>
-                    </DrawerFooter>
+                    {props.user && (
+                        <DrawerHeader>
+                            <Flex pt="8" direction="column" alignItems="center">
+                                <Avatar size="lg" name={props.user.name} />
+                                <Text fontSize="2xl" mt="4">
+                                    Firstname
+                                </Text>
+                            </Flex>
+                        </DrawerHeader>
+                    )}
+
+                    {props.user && (
+                        <DrawerBody>
+                            <Stack direction="column" spacing={4}>
+                                {sideNavItems.map((item) => (
+                                    <Button
+                                        key={item.name}
+                                        leftIcon={<Icon as={item.icon} />}
+                                        variant="ghost"
+                                        onClick={() =>
+                                            onNavigate(item.routePath)
+                                        }
+                                    >
+                                        {item.name}
+                                    </Button>
+                                ))}
+                            </Stack>
+                        </DrawerBody>
+                    )}
+
+                    {props.user && (
+                        <DrawerFooter justifyContent="center">
+                            <Stack direction="column" spacing={4}>
+                                <Button
+                                    leftIcon={<EmailIcon />}
+                                    colorScheme="teal"
+                                    variant="solid"
+                                >
+                                    Email
+                                </Button>
+                            </Stack>
+                        </DrawerFooter>
+                    )}
                 </DrawerContent>
             </Drawer>
         </Box>
