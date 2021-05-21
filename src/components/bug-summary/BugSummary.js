@@ -26,6 +26,8 @@ import Icon from "@chakra-ui/icon";
 import { Switch } from "@chakra-ui/switch";
 import { useDisclosure } from "@chakra-ui/hooks";
 
+import { baseUrl } from "../../config";
+
 const ManageBug = () => {
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -165,7 +167,7 @@ const ManageBug = () => {
               </Box>
               <Flex justifyContent="space-between" alignItems="center">
                 <Image
-                  src={"http://localhost:3000/bugimages/" + bugItem.imageUrl}
+                  src={baseUrl + "/bugimages/" + bugItem.imageUrl}
                   alt="Bug Image"
                 />
               </Flex>

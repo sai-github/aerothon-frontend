@@ -4,8 +4,9 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import axios from "axios";
+import { baseUrl } from "./config";
 
-axios.defaults.baseURL = "http://localhost:3000";
+axios.defaults.baseURL = baseUrl;
 axios.defaults.headers.common["Authorization"] =
   localStorage.getItem("sessionToken");
 
