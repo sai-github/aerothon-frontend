@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import DateFnsUtils from "@date-io/moment";
+import { MuiPickersUtilsProvider, DateTimePicker } from "@material-ui/pickers";
 
 import { Button } from "@chakra-ui/button";
 import { Box, Flex, Heading, VStack } from "@chakra-ui/layout";
@@ -35,31 +37,32 @@ import Icon from "@chakra-ui/icon";
 import { Switch } from "@chakra-ui/switch";
 import { useDisclosure } from "@chakra-ui/hooks";
 
-const ManageFaq = () => {
+const ManageAnnouncement = () => {
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [faq, setFaq] = useState([]);
-  const faqItemInitialState = {
-    question: "",
-    answer: "",
-    isActiveFaq: true,
-    category: "Option 1",
+  const [announcement, setAnnouncement] = useState([]);
+  const announcementItemInitialState = {
+    message: "",
+    activeFrom: new Date(),
+    activeTill: new Date(),
   };
-  const [faqItem, setFaqItem] = useState(faqItemInitialState);
-  const [faqID, setFaqID] = useState(null);
+  const [announcementItem, setAnnouncementItem] = useState(
+    announcementItemInitialState
+  );
+  const [announcementID, setAnnouncementID] = useState(null);
 
   useEffect(() => {
     axios
-      .get("/api/faq/")
+      .get("/api/announcement/")
       .then((res) => {
-        setFaq(res.data.data);
+        setAnnouncement(res.data.data);
       })
       .catch((e) => console.error(e));
   }, []);
 
-  const onDeleteFaq = async (faqItem) => {
+  const onDeleteAnnouncement = async (announcementItem) => {
     await axios
-      .delete("/api/faq/" + faqItem._id)
+      .delete("/api/announcement/" + announcementItem._id)
       .then((res) => {
         toast({
           title: "Success",
@@ -80,44 +83,48 @@ const ManageFaq = () => {
       );
 
     await axios
-      .get("/api/faq/")
+      .get("/api/announcement/")
       .then((res) => {
-        setFaq(res.data.data);
+        setAnnouncement(res.data.data);
       })
       .catch((e) => console.error(e));
   };
 
-  const onEditFaq = (freshness, value) => {
-    onOpen();
-
-    if (freshness === "old") {
-      setFaqItem({
-        question: value.question,
-        answer: value.answer,
-        isActiveFaq: value.isActiveFaq,
-        category: value.category,
-      });
-      setFaqID(value._id);
-    } else {
-      setFaqItem(faqItemInitialState);
-      setFaqID(null);
-    }
-  };
-
-  const onFaqItemChange = (event) => {
-    setFaqItem((prevValues) => ({
+  const dateChange = (cdt, name) => {
+    console.log("cdt here===", cdt);
+    setAnnouncementItem((prevValues) => ({
       ...prevValues,
-      [event.target.name]:
-        event.target.name === "isActiveFaq"
-          ? event.target.checked
-          : event.target.value,
+      [name]: cdt,
     }));
   };
 
-  const onSaveFaq = async () => {
-    if (faqID) {
+  const onEditAnnouncement = (freshness, value) => {
+    onOpen();
+
+    if (freshness === "old") {
+      setAnnouncementItem({
+        message: value.message,
+        activeFrom: value.activeFrom,
+        activeTill: value.activeTill,
+      });
+      setAnnouncementID(value._id);
+    } else {
+      setAnnouncementItem(announcementItemInitialState);
+      setAnnouncementID(null);
+    }
+  };
+
+  const onAnnouncementItemChange = (event) => {
+    setAnnouncementItem((prevValues) => ({
+      ...prevValues,
+      [event.target.name]: event.target.value,
+    }));
+  };
+
+  const onSaveAnnouncement = async () => {
+    if (announcementID) {
       await axios
-        .patch("/api/faq/" + faqID, faqItem)
+        .patch("/api/announcement/" + announcementID, announcementItem)
         .then((res) => {
           toast({
             title: "Success",
@@ -139,7 +146,7 @@ const ManageFaq = () => {
         });
     } else {
       await axios
-        .post("/api/faq/", faqItem)
+        .post("/api/announcement/", announcementItem)
         .then((res) => {
           toast({
             title: "Success",
@@ -161,9 +168,9 @@ const ManageFaq = () => {
         });
     }
     await axios
-      .get("/api/faq/")
+      .get("/api/announcement/")
       .then((res) => {
-        setFaq(res.data.data);
+        setAnnouncement(res.data.data);
       })
       .catch((e) => console.error(e));
   };
@@ -174,29 +181,20 @@ const ManageFaq = () => {
         maxW="500px"
         minW="300px"
         alignSelf="center"
-        onClick={() => onEditFaq("new")}
+        onClick={() => onEditAnnouncement("new")}
       >
-        Add FAQ
+        Add Announcement
       </Button>
       <Heading mt={16} mb={4}>
-        Manage FAQs
+        Manage Announcements
       </Heading>
       <Divider mb={8} />
       <Stack direction="column" spacing={8}>
-        {faq.map((item) => (
+        {announcement.map((item) => (
           <Box boxShadow="md" p="4" rounded="md" key={item._id}>
-            <Badge variant="outline" size="sm">
-              {item.category}
-            </Badge>
             <Flex justifyContent="space-between">
-              <Heading size="sm">{item.question}</Heading>
+              <Heading size="sm">{item.message}</Heading>
               <Stack spacing={2} direction="row" alignItems="center">
-                <Switch
-                  size="sm"
-                  isChecked={item.isActiveFaq}
-                  disabled={true}
-                />
-
                 <Popover>
                   <PopoverTrigger>
                     <IconButton
@@ -215,7 +213,7 @@ const ManageFaq = () => {
                         <Button
                           colorScheme="red"
                           size="sm"
-                          onClick={() => onDeleteFaq(item)}
+                          onClick={() => onDeleteAnnouncement(item)}
                         >
                           Delete
                         </Button>
@@ -229,7 +227,10 @@ const ManageFaq = () => {
                   variant="ghost"
                   colorScheme="teal"
                   icon={
-                    <Icon as={MdEdit} onClick={() => onEditFaq("old", item)} />
+                    <Icon
+                      as={MdEdit}
+                      onClick={() => onEditAnnouncement("old", item)}
+                    />
                   }
                 />
               </Stack>
@@ -243,64 +244,43 @@ const ManageFaq = () => {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent maxWidth="380px">
-          <ModalHeader>FAQ Manager</ModalHeader>
+          <ModalHeader>Announcement Manager</ModalHeader>
           <ModalBody>
             <VStack spacing={4} align="stretch">
               <Box>
-                <FormLabel htmlFor="question">Question</FormLabel>
+                <FormLabel htmlFor="message">Message</FormLabel>
                 <Input
-                  id="question"
-                  name="question"
+                  id="message"
+                  name="message"
                   type="text"
-                  placeholder="Type question"
-                  value={faqItem.question}
-                  onChange={onFaqItemChange}
+                  placeholder="Type message"
+                  value={announcementItem.message}
+                  onChange={onAnnouncementItemChange}
                 />
                 <span className="errors">
-                  {!faqItem.question ? <div>Required</div> : null}
+                  {!announcementItem.message ? <div>Required</div> : null}
                 </span>
               </Box>
               <Box>
-                <FormLabel htmlFor="answer">Answer</FormLabel>
-
-                <Textarea
-                  id="answer"
-                  name="answer"
-                  type="text"
-                  placeholder="Type answer"
-                  value={faqItem.answer}
-                  onChange={onFaqItemChange}
-                />
-
-                <span className="errors">
-                  {!faqItem.answer ? <div>Required</div> : null}
-                </span>
+                <FormLabel htmlFor="message">Start Date</FormLabel>
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                  <DateTimePicker
+                    label="2px spacing"
+                    value={announcementItem.activeFrom}
+                    onChange={(date) => dateChange(date, "activeFrom")}
+                  />
+                </MuiPickersUtilsProvider>
               </Box>
-              <Flex justifyContent="space-between" alignItems="center">
-                <Box>
-                  <Switch
-                    name="isActiveFaq"
-                    isChecked={faqItem.isActiveFaq}
-                    onChange={onFaqItemChange}
-                  />{" "}
-                  Show in FAQ
-                </Box>
-                <Stack direction="column">
-                  <Select
-                    name="category"
-                    placeholder="Select option"
-                    value={faqItem.category}
-                    onChange={onFaqItemChange}
-                  >
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </Select>
-                  <span className="errors">
-                    {!faqItem.category ? <div>Required</div> : null}
-                  </span>
-                </Stack>
-              </Flex>
+              <Box>
+                <FormLabel htmlFor="message">End Date</FormLabel>
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                  <DateTimePicker
+                    label="2px spacing"
+                    value={announcementItem.activeTill}
+                    onChange={(date) => dateChange(date, "activeTill")}
+                  />
+                </MuiPickersUtilsProvider>
+              </Box>
             </VStack>
           </ModalBody>
 
@@ -308,7 +288,7 @@ const ManageFaq = () => {
             <Button variant="ghost" mr={3} onClick={onClose}>
               Discard
             </Button>
-            <Button onClick={onSaveFaq}>Save</Button>
+            <Button onClick={onSaveAnnouncement}>Save</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
@@ -316,4 +296,4 @@ const ManageFaq = () => {
   );
 };
 
-export default ManageFaq;
+export default ManageAnnouncement;
