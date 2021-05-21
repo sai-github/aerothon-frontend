@@ -109,7 +109,7 @@ function App() {
                             <NotFound />
                         </Route>
                     </Switch>
-                    <ChmodChatComponent />
+                    <ChmodChatComponent chatProps={{ appName: 'chmod777' }} />
                 </Router>
             </ChakraProvider>
         </div>
