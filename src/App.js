@@ -18,6 +18,9 @@ import NotFound from './components/not-found/NotFound';
 import ManageFaq from './components/manage-faq/ManageFaq';
 import BugSummary from './components/bug-summary/BugSummary';
 
+import { ChmodChatComponent } from 'chmod777-assistant';
+import 'chmod777-assistant/dist/index.css';
+
 function App() {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
 
@@ -106,6 +109,7 @@ function App() {
                             <NotFound />
                         </Route>
                     </Switch>
+                    <ChmodChatComponent />
                 </Router>
             </ChakraProvider>
         </div>
