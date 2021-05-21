@@ -6,7 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import axios from "axios";
 import { baseUrl } from "./config";
 
-axios.defaults.baseURL = baseUrl;
+axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
 axios.defaults.headers.common["Authorization"] =
   localStorage.getItem("sessionToken");
 

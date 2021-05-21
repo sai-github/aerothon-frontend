@@ -26,8 +26,6 @@ import Icon from "@chakra-ui/icon";
 import { Switch } from "@chakra-ui/switch";
 import { useDisclosure } from "@chakra-ui/hooks";
 
-import { baseUrl } from "../../config";
-
 const ManageBug = () => {
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -39,7 +37,6 @@ const ManageBug = () => {
     priority: "Low",
   };
   const [bugItem, setBugItem] = useState(bugItemInitialState);
-  const [bugID, setBugID] = useState(null);
 
   useEffect(() => {
     axios
@@ -60,10 +57,8 @@ const ManageBug = () => {
         imageUrl: value.imageUrl,
         priority: value.priority,
       });
-      setBugID(value._id);
     } else {
       setBugItem(bugItemInitialState);
-      setBugID(null);
     }
   };
 
@@ -167,7 +162,11 @@ const ManageBug = () => {
               </Box>
               <Flex justifyContent="space-between" alignItems="center">
                 <Image
-                  src={baseUrl + "/bugimages/" + bugItem.imageUrl}
+                  src={
+                    process.env.REACT_APP_BACKEND_URL +
+                    "/bugimages/" +
+                    bugItem.imageUrl
+                  }
                   alt="Bug Image"
                 />
               </Flex>
