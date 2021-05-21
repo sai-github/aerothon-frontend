@@ -119,7 +119,7 @@ const Header = (props) => {
                             <Flex pt="8" direction="column" alignItems="center">
                                 <Avatar size="lg" name={props.user.name} />
                                 <Text fontSize="2xl" mt="4">
-                                    Atul Sharma
+                                    {props.user.name}
                                 </Text>
                             </Flex>
                         </DrawerHeader>
