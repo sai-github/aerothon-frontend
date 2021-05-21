@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { Link as ReactLink, useHistory } from 'react-router-dom';
 import { useFormik } from 'formik';
@@ -47,6 +47,7 @@ const validate = (values) => {
 };
 
 const Signup = () => {
+    const [loading, setLoading] = useState(false);
     let history = useHistory();
     const toast = useToast();
 
@@ -63,9 +64,11 @@ const Signup = () => {
         onSubmit: (values) => {
             // eslint-disable-next-line no-unused-vars
             const { retypePassword, ...filteredValues } = values;
+            setLoading(true);
             axios
                 .post('/api/register', filteredValues)
                 .then((res) => {
+                    setLoading(false);
                     toast({
                         title: 'Success',
                         description: res.data.message,
@@ -76,6 +79,7 @@ const Signup = () => {
                     history.push('/login');
                 })
                 .catch((error) => {
+                    setLoading(false);
                     toast({
                         title: 'Error',
                         description: error.response.data.message,
@@ -216,7 +220,12 @@ const Signup = () => {
                                 Login
                             </Link>
                         </span>
-                        <Button colorScheme="teal" size="md" type="submit">
+                        <Button
+                            colorScheme="teal"
+                            size="md"
+                            type="submit"
+                            isLoading={loading}
+                        >
                             Sign up
                         </Button>
                     </VStack>
