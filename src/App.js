@@ -15,6 +15,7 @@ import UserAuth from './components/auth/UserAuth';
 import Dashboard from './components/dashboard/Dashboard';
 import PrivateDashboard from './components/dashboard/PrivateDashboard';
 import NotFound from './components/not-found/NotFound';
+import WidgetButton from './components/widget/WidgetButton';
 
 function App() {
     const isLoggedIn = () => {
@@ -79,6 +80,7 @@ function App() {
                     </Switch>
                 </Router>
             </ChakraProvider>
+            <WidgetButton />
         </div>
     );
 }
