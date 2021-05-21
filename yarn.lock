@@ -3876,10 +3876,10 @@ check-types@^11.1.1:
   resolved "https://registry.yarnpkg.com/check-types/-/check-types-11.1.2.tgz#86a7c12bf5539f6324eb0e70ca8896c0e38f3e2f"
   integrity sha512-tzWzvgePgLORb9/3a0YenggReLKAIb2owL03H2Xdoe5pKcUyWRSEQ8xfCar8t2SIAuEDwtmx2da1YB52YuHQMQ==
 
-chmod777-assistant@1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/chmod777-assistant/-/chmod777-assistant-1.0.1.tgz#06b549a5db98524343e3a108159fd5ff11596a37"
-  integrity sha512-WIyX8yc43yHhCBzStUhPQc/aVyzOv81X1LhgS6Dzqz+A7XGI5ulz7fmauSB3Zkvj+mlxnimi8JF1d2LvjTrsmg==
+chmod777-assistant@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/chmod777-assistant/-/chmod777-assistant-1.0.2.tgz#351ebdf2380693f72d92e94626c14944a59d7110"
+  integrity sha512-M0vxE3zUUcjicCq5RLAGeymxVYZ2Iclc+MAPwcB+fSvriN4C77nxbGabxjjdVnJ7E4EHlfpBydCXSIb8HVbIAA==
   dependencies:
     "@chakra-ui/icons" "^1.0.13"
     "@chakra-ui/react" "^1.6.2"
