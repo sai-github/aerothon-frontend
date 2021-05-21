@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { Link as ReactLink, useHistory } from 'react-router-dom';
 
@@ -8,7 +8,6 @@ import { FormLabel } from '@chakra-ui/form-control';
 import { Input } from '@chakra-ui/input';
 import { Button } from '@chakra-ui/button';
 import { useToast } from '@chakra-ui/react';
-
 import './Login.css';
 
 const validate = (values) => {
@@ -30,6 +29,7 @@ const validate = (values) => {
 };
 
 const Login = (props) => {
+    const [loading, setLoading] = useState(false);
     const history = useHistory();
     const toast = useToast();
 
@@ -40,9 +40,11 @@ const Login = (props) => {
         },
         validate,
         onSubmit: (values) => {
+            setLoading(true);
             axios
                 .post('/api/login', values)
                 .then((res) => {
+                    setLoading(false);
                     if (res.data.status === 'success') {
                         localStorage.setItem('sessionToken', res.data.token);
                         axios.defaults.headers.common['Authorization'] =
@@ -65,6 +67,7 @@ const Login = (props) => {
                     }
                 })
                 .catch((error) => {
+                    setLoading(false);
                     toast({
                         title: 'Error',
                         description: error.response.data.message,
@@ -130,7 +133,7 @@ const Login = (props) => {
                             </Link>
                         </span>
 
-                        <Button size="md" type="submit">
+                        <Button size="md" type="submit" isLoading={loading}>
                             Login
                         </Button>
                     </VStack>
