@@ -13,7 +13,7 @@ import { customTheme } from './theme';
 import Header from './components/header/Header';
 import UserAuth from './components/auth/UserAuth';
 import Splash from './components/splash/Splash';
-import PrivateDashboard from './components/dashboard/PrivateDashboard';
+import Dashboard from './components/dashboard/Dashboard';
 import NotFound from './components/not-found/NotFound';
 import ManageFaq from './components/manage-faq/ManageFaq';
 import BugSummary from './components/bug-summary/BugSummary';
@@ -76,7 +76,7 @@ function App() {
                             path="/dashboard"
                             render={() =>
                                 isLoggedIn() ? (
-                                    <PrivateDashboard />
+                                    <Dashboard />
                                 ) : (
                                     <Redirect to="/login" />
                                 )

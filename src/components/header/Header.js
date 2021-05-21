@@ -20,7 +20,7 @@ import {
     Text,
     Button,
 } from '@chakra-ui/react';
-import { CgMenuRight, CgSupport, CgDebug } from 'react-icons/cg';
+import { CgMenuRight, CgSupport, CgDebug, CgTrello } from 'react-icons/cg';
 
 import airbusLogo from '../../assets/logo/airbus-logo-dark.svg';
 import chmodLogo from '../../assets/logo/chmod777-dark.svg';
@@ -33,6 +33,11 @@ const Header = (props) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const btnRef = React.useRef();
     const sideNavItems = [
+        {
+            name: 'Register Bot',
+            icon: CgTrello,
+            routePath: '/dashboard',
+        },
         {
             name: 'Manage FAQs',
             icon: CgSupport,
