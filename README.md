@@ -10,6 +10,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 -   `cd chmod777-frontend`
 -   `yarn install`
 -   `yarn start`
+-   configure `REACT_APP_BACKEND_URL` and `PORT` in `.env` file
+-   to ignore these changes being pushed back to repo run `git update-index --assume-unchanged .env`
 
 ## Tips when contributing to the project
 
