@@ -106,7 +106,10 @@ const ManageBug = () => {
                     <Box boxShadow="md" p="4" rounded="md" key={item._id}>
                         <Badge
                             colorScheme={
-                                item.priority === 'High' ? 'red' : 'purple'
+                                item.priority.toLowerCase() ===
+                                'High'.toLowerCase()
+                                    ? 'red'
+                                    : 'purple'
                             }
                             variant="outline"
                             size="sm"
@@ -176,14 +179,7 @@ const ManageBug = () => {
                                 justifyContent="space-between"
                                 alignItems="center"
                             >
-                                <Image
-                                    src={
-                                        process.env.REACT_APP_BACKEND_URL +
-                                        '/bugimages/' +
-                                        bugItem.imageUrl
-                                    }
-                                    alt="Bug Image"
-                                />
+                                <Image src={bugItem.imageUrl} alt="bug item" />
                             </Flex>
                         </VStack>
                     </ModalBody>
