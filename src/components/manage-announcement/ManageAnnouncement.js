@@ -9,7 +9,6 @@ import { Text } from '@chakra-ui/layout';
 import { Stack } from '@chakra-ui/layout';
 import { IconButton } from '@chakra-ui/button';
 import {
-    Badge,
     Popover,
     PopoverArrow,
     PopoverBody,
@@ -25,8 +24,6 @@ import {
     ModalBody,
     FormLabel,
     Input,
-    Textarea,
-    Select,
     useToast,
     Divider,
 } from '@chakra-ui/react';
@@ -34,7 +31,7 @@ import {
 import { MdEdit } from 'react-icons/md';
 import { CgTrash } from 'react-icons/cg';
 import Icon from '@chakra-ui/icon';
-import { Switch } from '@chakra-ui/switch';
+
 import { useDisclosure } from '@chakra-ui/hooks';
 
 const ManageAnnouncement = () => {
