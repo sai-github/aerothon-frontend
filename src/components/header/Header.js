@@ -20,7 +20,13 @@ import {
   Text,
   Button,
 } from "@chakra-ui/react";
-import { CgMenuRight, CgSupport, CgDebug, CgVolume } from "react-icons/cg";
+import {
+  CgMenuRight,
+  CgSupport,
+  CgDebug,
+  CgTrello,
+  CgVolume,
+} from "react-icons/cg";
 
 import airbusLogo from "../../assets/logo/airbus-logo-dark.svg";
 import chmodLogo from "../../assets/logo/chmod777-dark.svg";
@@ -33,6 +39,11 @@ const Header = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
   const sideNavItems = [
+    {
+      name: "Register Bot",
+      icon: CgTrello,
+      routePath: "/dashboard",
+    },
     {
       name: "Manage FAQs",
       icon: CgSupport,
@@ -115,7 +126,7 @@ const Header = (props) => {
               <Flex pt="8" direction="column" alignItems="center">
                 <Avatar size="lg" name={props.user.name} />
                 <Text fontSize="2xl" mt="4">
-                  Atul Sharma
+                  {props.user.name}
                 </Text>
               </Flex>
             </DrawerHeader>
