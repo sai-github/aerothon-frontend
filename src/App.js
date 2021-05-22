@@ -19,6 +19,9 @@ import ManageFaq from './components/manage-faq/ManageFaq';
 import BugSummary from './components/bug-summary/BugSummary';
 import ManageAnnouncement from './components/manage-announcement/ManageAnnouncement';
 
+import { ChmodChatComponent } from 'chmod777-assistant';
+import 'chmod777-assistant/dist/index.css';
+
 function App() {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
 
@@ -117,6 +120,13 @@ function App() {
                             <NotFound />
                         </Route>
                     </Switch>
+                    <ChmodChatComponent
+                        chatProps={{
+                            appName: 'chmod777',
+                            sessionToken: process.env.REACT_APP_SESSION_TOKEN,
+                            botToken: process.env.REACT_APP_BOT_TOKEN,
+                        }}
+                    />
                 </Router>
             </ChakraProvider>
         </div>
