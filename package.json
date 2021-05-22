@@ -11,7 +11,7 @@
         "@testing-library/react": "^11.1.0",
         "@testing-library/user-event": "^12.1.10",
         "axios": "^0.21.1",
-        "chmod777-assistant": "1.0.2",
+        "chmod777-assistant": "1.0.3",
         "formik": "^2.2.6",
         "framer-motion": "4",
         "jwt-decode": "^3.1.2",
