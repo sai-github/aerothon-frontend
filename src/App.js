@@ -109,7 +109,13 @@ function App() {
                             <NotFound />
                         </Route>
                     </Switch>
-                    <ChmodChatComponent chatProps={{ appName: 'chmod777' }} />
+                    <ChmodChatComponent
+                        chatProps={{
+                            appName: 'chmod777',
+                            sessionToken: process.env.REACT_APP_SESSION_TOKEN,
+                            botToken: process.env.REACT_APP_BOT_TOKEN,
+                        }}
+                    />
                 </Router>
             </ChakraProvider>
         </div>
