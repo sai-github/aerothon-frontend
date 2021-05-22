@@ -20,7 +20,13 @@ import {
     Text,
     Button,
 } from '@chakra-ui/react';
-import { CgMenuRight, CgSupport, CgDebug, CgTrello } from 'react-icons/cg';
+import {
+    CgMenuRight,
+    CgSupport,
+    CgDebug,
+    CgTrello,
+    CgVolume,
+} from 'react-icons/cg';
 
 import airbusLogo from '../../assets/logo/airbus-logo-dark.svg';
 import chmodLogo from '../../assets/logo/chmod777-dark.svg';
@@ -47,6 +53,11 @@ const Header = (props) => {
             name: 'Bugs Summary',
             icon: CgDebug,
             routePath: '/bugSummary',
+        },
+        {
+            name: 'Manage Announcement',
+            icon: CgVolume,
+            routePath: '/manageAnnouncement',
         },
     ];
 

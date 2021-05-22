@@ -17,6 +17,7 @@ import Dashboard from './components/dashboard/Dashboard';
 import NotFound from './components/not-found/NotFound';
 import ManageFaq from './components/manage-faq/ManageFaq';
 import BugSummary from './components/bug-summary/BugSummary';
+import ManageAnnouncement from './components/manage-announcement/ManageAnnouncement';
 
 import { ChmodChatComponent } from 'chmod777-assistant';
 import 'chmod777-assistant/dist/index.css';
@@ -100,6 +101,16 @@ function App() {
                             render={() =>
                                 isLoggedIn() ? (
                                     <BugSummary />
+                                ) : (
+                                    <Redirect to="/login" />
+                                )
+                            }
+                        />
+                        <Route
+                            path="/manageAnnouncement"
+                            render={() =>
+                                isLoggedIn() ? (
+                                    <ManageAnnouncement />
                                 ) : (
                                     <Redirect to="/login" />
                                 )
