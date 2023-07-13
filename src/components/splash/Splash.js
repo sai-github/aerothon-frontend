@@ -35,7 +35,11 @@ const Dashboard = () => {
                     Get Started
                 </Button>
             </Flex>
-            <img style={{ maxWidth: '400px' }} src={splash} alt="logo" />
+            <img
+                style={{ maxWidth: '400px', width: '100%' }}
+                src={splash}
+                alt="logo"
+            />
         </Flex>
     );
 };
