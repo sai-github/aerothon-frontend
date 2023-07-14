@@ -2,6 +2,18 @@
 
 [![Node.js CI](https://github.com/sai-github/chmod777-frontend/actions/workflows/node.js.yml/badge.svg)](https://github.com/sai-github/chmod777-frontend/actions/workflows/node.js.yml) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
+This PoC offers a glimpse into how chatbot integration and management can be made more efficient. Please remember, as a hackathon project, this tool only includes basic functionalities. However, it provides a solid foundation for building a more robust chatbot management system in the future.
+
+## 🌟 Core Features
+🔑 Token Generation: We've simplified the bot integration process with our easy token generation feature. Generate a unique token for your bot on our platform and use it for integrating the chatbot into your application.
+
+❓ FAQ Management: Our tool includes a straightforward FAQ management system. Group FAQs or toggle their visibility in the searchable list. The chatbot utilizes this FAQ list to answer user queries efficiently.
+
+🐞 Bug Reporting: Users can submit bug reports directly through the chatbot. These reports are then compiled into our system, enabling you to view and manage them from our platform.
+
+[Click here to view the demo](./docs/demo.webm)
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Setting up and getting started with project
