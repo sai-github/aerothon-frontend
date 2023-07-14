@@ -14,6 +14,7 @@ This PoC offers a glimpse into how chatbot integration and management can be mad
 <a href="https://drive.google.com/file/d/12pqfvKBEg_GwtSyV2ofh5Cw3477uNCMe/view?usp=sharing">
     <img src="./docs/demo.jpg" height="300" alt="Demo video link"/>
 </a>
+
 ---
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
