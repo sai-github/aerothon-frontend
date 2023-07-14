@@ -11,7 +11,9 @@ This PoC offers a glimpse into how chatbot integration and management can be mad
 
 🐞 Bug Reporting: Users can submit bug reports directly through the chatbot. These reports are then compiled into our system, enabling you to view and manage them from our platform.
 
-[Click here to view the demo](./docs/demo.webm)
+<video width="320" height="240" controls>
+  <source src="./docs/demo.webm" type="video/webm">
+</video>
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
